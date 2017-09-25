@@ -25,7 +25,7 @@ public class Player
    {
       for(int i = 0; i < hand.size() - 1; i ++)
          for(int j = i + 1; j < hand.size(); j ++)
-            if(hand.get(i).matches.hand.get(j))
+            if(hand.get(i).matches(hand.get(j)));
             {
                pairs ++;
                hand.remove(j);
@@ -61,7 +61,7 @@ public class Player
    //Adds a card of the given rank from hand to p.hand. Removes the card from hand
    public void giveCard(String rank, Player p)
    {
-      p.add(this.hand.get(this.indexOf(rank));
+      p.add(this.hand.get(this.indexOf(rank)));
       this.hand.remove(this.indexOf(rank));
    }
             
@@ -79,3 +79,4 @@ public class Player
       }
    }
 }//end Player
+
