@@ -15,7 +15,7 @@ public class Player
    public int indexOf(String rank)
    {
       for(int i = 0; i < hand.size(); i ++)
-         if(c.getRank().equals(rank))
+         if(hand.get(i).getRank().equals(rank))
             return i;
        return -1;
     }
