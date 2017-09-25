@@ -71,7 +71,7 @@ public class Player
       if(p.indexOf(rank) > -1)
       {
          this.hand.add(p.hand.get(p.indexOf(rank)));
-         p.hand.remove(p.inexOf(rank));
+         p.hand.remove(p.indexOf(rank));
       }
       else
       {
