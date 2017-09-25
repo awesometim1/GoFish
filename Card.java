@@ -1,3 +1,4 @@
+
 /**
  * Anna Herms, Zach Richey, Tim Lee
  * Edited for GO FISH
@@ -24,10 +25,10 @@ public class Card
    {
 		return this.rank;
    }
-
-	public boolean matches(Card otherCard) 
+   
+   public boolean matches(Card otherCard) 
    {
-      if((this.rank()).compareTo(otherCard.rank())!= 0)
+      if((this.rank).compareTo(otherCard.getRank())!= 0)
          return false;
       else 
          return true;
@@ -36,6 +37,7 @@ public class Card
 	@Override
 	public String toString() 
    {
-		return this.rank() + " of " + this.suit();
+		return this.rank + " of " + this.suit;
 	}
+
 }
