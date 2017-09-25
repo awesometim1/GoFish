@@ -2,7 +2,7 @@
 import java.util.List;
 public class Player
 {
-   private List<Card> hand;
+   List<Card> hand;
    private int pairs;
    
    public Player(List<Card> dealtHand)
@@ -11,16 +11,16 @@ public class Player
       pairs = 0;
    }
    
-   //Checks the player's hand and returns true if they have a card eith the given rank
-   public boolean hasa(String rank)
+   //Checks the player's hand and returns the index of a card with the given rank
+   public int indexOf(String rank)
    {
-      for(Card c: hand)
+      for(int i = 0; i < hand.size())
          if(c.getRank().equals(rank))
-            return true;
-      return false;
-   }
+            return i;
+       return -1;
+    }
    
-   //Checks the player's hand for a pair.  Puts one card 
+   //Checks the player's whole hand for a pair. Increments pair and removes cards if one is found
    public void checkPairInitial()
    {
       for(int i = 0; i < hand.size() - 1; i ++)
@@ -33,6 +33,7 @@ public class Player
             }
    }
    
+   //Just like checkPairInitial but only checks if there is a pair involving the last card
    public void checkPair()
    {
       for(int i = 0; i < hand.size() - 1; i ++)
@@ -42,5 +43,24 @@ public class Player
             hand.remove(hand.size() - 1);
             hand.remove(i);
          }
+   }
+   
+   //Prints the player's current hand
+   public void showHand()
+   {
+      for(Card c: hand)
+         System.out.println(c);
+   }
+   
+   //Adds a card to hand
+   //public void add(Card c)
+   //{
+   //   hand.add(c);
+   //}
+   
+   //Adds a card of the given rank from hand to p.hand. Removes the card from hand
+   public void giveCard(String rank, Player p)
+   {
+      p.add(this.hand.get(this.indexOf(rank))
    }
 }//end Player
