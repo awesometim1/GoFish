@@ -14,7 +14,7 @@ public class Player
    //Checks the player's hand and returns the index of a card with the given rank
    public int indexOf(String rank)
    {
-      for(int i = 0; i < hand.size())
+      for(int i = 0; i < hand.size(); i ++)
          if(c.getRank().equals(rank))
             return i;
        return -1;
@@ -61,6 +61,21 @@ public class Player
    //Adds a card of the given rank from hand to p.hand. Removes the card from hand
    public void giveCard(String rank, Player p)
    {
-      p.add(this.hand.get(this.indexOf(rank))
+      p.add(this.hand.get(this.indexOf(rank));
+      this.hand.remove(this.indexOf(rank));
+   }
+            
+   //Asks other player for a card
+   public void ask(String rank, Player p, Deck d)
+   {
+      if(p.indexOf(rank) > -1)
+      {
+         this.hand.add(p.hand.get(p.indexOf(rank)));
+         p.hand.remove(p.inexOf(rank));
+      }
+      else
+      {
+         this.hand.add(d.deal());
+      }
    }
 }//end Player
