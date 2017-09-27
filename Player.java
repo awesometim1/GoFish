@@ -3,7 +3,7 @@ import java.util.List;
 public class Player
 {
    List<Card> hand;
-   private int pairs;
+   public int pairs;
    
    public Player(List<Card> dealtHand)
    {
@@ -17,20 +17,22 @@ public class Player
       for(int i = 0; i < hand.size(); i ++)
          if(hand.get(i).getRank().equals(rank))
             return i;
-       return -1;
-    }
+      return -1;
+   }
    
    //Checks the player's whole hand for a pair. Increments pair and removes cards if one is found
    public void checkPairInitial()
    {
-      for(int i = 0; i < hand.size() - 1; i ++)
-         for(int j = i + 1; j < hand.size(); j ++)
-            if(hand.get(i).matches(hand.get(j)));
+      for(int i = 0; i < hand.size() - 1; i ++){
+         for(int j = i + 1; j < hand.size(); j ++){
+            if(hand.get(i).matches(hand.get(j)))
             {
                pairs ++;
                hand.remove(j);
                hand.remove(i);
             }
+         }
+      }
    }
    
    //Just like checkPairInitial but only checks if there is a pair involving the last card
@@ -61,7 +63,7 @@ public class Player
    //Adds a card of the given rank from hand to p.hand. Removes the card from hand
    public void giveCard(String rank, Player p)
    {
-      p.add(this.hand.get(this.indexOf(rank)));
+      p.hand.add(this.hand.get(this.indexOf(rank)));
       this.hand.remove(this.indexOf(rank));
    }
             
@@ -79,4 +81,3 @@ public class Player
       }
    }
 }//end Player
-
