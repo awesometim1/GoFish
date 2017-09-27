@@ -12,21 +12,21 @@ public class Card
 
 	public Card(String cardRank, String cardSuit) 
    {
-		suit = cardSuit;
+      suit = cardSuit;
       rank = cardRank;
-  	}
+   }
 
-	public String getSuit() 
+	public String getSuit() //returns suit of card(diamonds, hearts, clubs, spades)
    {
 		return this.suit;
    }
 
-	public String getRank() 
+	public String getRank() //returns rank of card(aces,2,3,...,jack, queen, king)
    {
 		return this.rank;
    }
    
-   public boolean matches(Card otherCard) 
+   public boolean matches(Card otherCard) //checks to see if two cards have the same rank
    {
       if((this.rank).compareTo(otherCard.getRank())!= 0)
          return false;
@@ -35,7 +35,7 @@ public class Card
 	}
 
 	@Override
-	public String toString() 
+	public String toString() //outputs card rank and suit in a sentence
    {
 		return this.rank + " of " + this.suit;
 	}
