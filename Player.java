@@ -30,6 +30,8 @@ public class Player
                pairs ++;
                hand.remove(j);
                hand.remove(i);
+               i = 0;
+               j = i+1;
             }
          }
       }
