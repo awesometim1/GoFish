@@ -1,4 +1,4 @@
-//Handsomely coded by Tim Lee
+//Handsomely coded by Tim Lee and Anna Herms
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
