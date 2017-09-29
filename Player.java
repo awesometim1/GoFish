@@ -1,4 +1,4 @@
-//Coded by Zach Richey
+//Coded by Zach Richey and Anna Herms
 import java.util.List;
 public class Player
 {
@@ -31,19 +31,32 @@ public class Player
                hand.remove(j);
                hand.remove(i);
                i = 0;
-               j = i+1;
+               j = 1;
             }
          }
       }
    }
    
    //Just like checkPairInitial but only checks if there is a pair involving the last card
-   public void checkPair()
+   public void checkPairHuman()
    {
       for(int i = 0; i < hand.size() - 1; i ++)
          if(hand.get(i).matches(hand.get(hand.size() - 1)))
          {
             pairs ++;
+            System.out.println("Good job! You got a pair of " + (hand.get(i)).getRank() + "s. You now have " + pairs + " pair(s).");
+            hand.remove(hand.size() - 1);
+            hand.remove(i);
+         }
+   }
+   
+   public void checkPairBot()
+   {
+      for(int i = 0; i < hand.size() - 1; i ++)
+         if(hand.get(i).matches(hand.get(hand.size() - 1)))
+         {
+            pairs ++;
+            System.out.println("Robot got a pair of " + (hand.get(i)).getRank() + "s. Robot now has " + pairs + " pair(s).");
             hand.remove(hand.size() - 1);
             hand.remove(i);
          }
@@ -52,6 +65,7 @@ public class Player
    //Prints the player's current hand
    public void showHand()
    {
+      System.out.println();
       for(Card c: hand)
          System.out.println(c);
    }
@@ -70,16 +84,36 @@ public class Player
    }
             
    //Asks other player for a card
-   public void ask(String rank, Player p, Deck d)
+   public void askHuman(String rank, Player p, Deck d)
    {
       if(p.indexOf(rank) > -1)
       {
+         System.out.println("\nYou asked for a " + rank + ". You took robot's " + rank);
          this.hand.add(p.hand.get(p.indexOf(rank)));
          p.hand.remove(p.indexOf(rank));
       }
       else
       {
+       this.hand.add(d.deal());
+       System.out.println("\nRobot did not have a " + rank + ". You Drew a " + this.hand.get(hand.size()-1) + ".");
+      }
+   }
+   
+   public void askBot(String rank, Player p, Deck d)
+    {
+      if(p.indexOf(rank) > -1)
+      {
+         System.out.println("\nRobot asked for a " + rank + ". Robot took your " + rank);
+         this.hand.add(p.hand.get(p.indexOf(rank)));
+         p.hand.remove(p.indexOf(rank));
+         this.checkPairBot();
+         p.showHand();
+       }
+      else
+      {
+         System.out.println("\nRobot asked for " + rank + ". You did not have a " + rank + ". Robot drew a card.");
          this.hand.add(d.deal());
+         this.checkPairBot();
       }
    }
 }//end Player
