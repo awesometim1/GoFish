@@ -31,9 +31,9 @@ public class GoFish{
    public static void turn(){
       human.checkPairInitial();
       robot.checkPairInitial();
-      human.showHand();
-      System.out.println("HELLO");
-      robot.showHand();
+      human.showHand();//prints your cards
+      System.out.println("--------");
+      robot.showHand();//prints robots cards
       Scanner in = new Scanner(System.in);
       while (true){
       
@@ -41,24 +41,24 @@ public class GoFish{
       //Human Behavior
          
          
-         System.out.println("Enter a card that you have and want to ask");
+         System.out.println("\nEnter a card that you have and want to ask");
          String input = in.next();
          
-            if (human.indexOf(input) <= -1)
-               while (true){
+         if (human.indexOf(input) <= -1)
+            while (true){
                System.out.println("You do not have that card enter another card");
                input = in.next();
                if (human.indexOf(input) > -1)
-               break;
-               }
-         human.ask(input, robot, dMain);
-         human.checkPair();
+                  break;
+            }
+         human.askHuman(input, robot, dMain);
+         human.checkPairHuman();
          human.showHand();
       
       //Check if no remaining cards
          if (human.hand.size() < 1 ){
             if (human.pairs > robot.pairs)
-               System.out.println("Human Has WON!");
+               System.out.println("Human has WON!");
             else if (human.pairs < robot.pairs)
                System.out.println("Robot has WON");
             else
@@ -67,8 +67,8 @@ public class GoFish{
          }
       //Robot Behavior
          int rand = (int)(Math.random() * robot.hand.size());
-         robot.ask(robot.hand.get(rand).getRank(), human, dMain);
-         robot.checkPair();
+         robot.askBot(robot.hand.get(rand).getRank(), human, dMain);
+         //robot.checkPairBot();
          
        //Check if no remaining cards
          if (robot.hand.size() < 1){
@@ -80,11 +80,6 @@ public class GoFish{
                System.out.println("It's a tie!");
             break;
          }
-      
       }
    }
-   
-   
-   
-  
 }
