@@ -2,7 +2,7 @@
 import java.util.List;
 public class Player
 {
-   List<Card> hand;
+   public List<Card> hand;
    public int pairs;
    
    public Player(List<Card> dealtHand)
@@ -44,7 +44,7 @@ public class Player
          if(hand.get(i).matches(hand.get(hand.size() - 1)))
          {
             pairs ++;
-            System.out.println("Good job! You got a pair of " + (hand.get(i)).getRank() + "s. You now have " + pairs + " pair(s).");
+            System.out.println("Good job! You got a pair of " + (hand.get(i)).getRank() + "s.");
             hand.remove(hand.size() - 1);
             hand.remove(i);
          }
@@ -56,7 +56,7 @@ public class Player
          if(hand.get(i).matches(hand.get(hand.size() - 1)))
          {
             pairs ++;
-            System.out.println("Robot got a pair of " + (hand.get(i)).getRank() + "s. Robot now has " + pairs + " pair(s).");
+            System.out.println("Robot got a pair of " + (hand.get(i)).getRank() + "s.");
             hand.remove(hand.size() - 1);
             hand.remove(i);
          }
@@ -65,9 +65,10 @@ public class Player
    //Prints the player's current hand
    public void showHand()
    {
-      System.out.println();
+      System.out.println("Your hand:");
       for(Card c: hand)
          System.out.println(c);
+      System.out.println();
    }
    
    //Adds a card to hand
@@ -88,14 +89,14 @@ public class Player
    {
       if(p.indexOf(rank) > -1)
       {
-         System.out.println("\nYou asked for a " + rank + ". You took robot's " + rank);
+         System.out.println("\nYou asked for a " + rank + ". You took robot's " + rank + ".");
          this.hand.add(p.hand.get(p.indexOf(rank)));
          p.hand.remove(p.indexOf(rank));
       }
       else
       {
        this.hand.add(d.deal());
-       System.out.println("\nRobot did not have a " + rank + ". You Drew a " + this.hand.get(hand.size()-1) + ".");
+       System.out.println("\nRobot did not have a " + rank + ". You drew a " + this.hand.get(hand.size()-1) + ".");
       }
    }
    
@@ -103,7 +104,7 @@ public class Player
     {
       if(p.indexOf(rank) > -1)
       {
-         System.out.println("\nRobot asked for a " + rank + ". Robot took your " + rank);
+         System.out.println("\nRobot asked for a " + rank + ". Robot took your " + rank + ".");
          this.hand.add(p.hand.get(p.indexOf(rank)));
          p.hand.remove(p.indexOf(rank));
          this.checkPairBot();
