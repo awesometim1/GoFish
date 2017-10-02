@@ -1,5 +1,4 @@
-//Handsomely coded by Tim Lee and Anna Herms
-//Passive agressively tweaked by Zach Richey
+//Handsomely coded by Tim Lee
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,8 @@ public class GoFish{
       
       
       
-      robot = new Player(dMain.deal(5));
-      human = new Player(dMain.deal(5));
+      robot = new Player(dMain.deal(5) , "robot");
+      human = new Player(dMain.deal(5) , "human");
       
       turn();
    
@@ -33,33 +32,34 @@ public class GoFish{
       human.checkPairInitial();
       robot.checkPairInitial();
       human.showHand();//prints your cards
+      System.out.println("--------");
+      robot.showHand();//prints robots cards
       Scanner in = new Scanner(System.in);
+      int rand = 0;
       while (true){
       
       
       //Human Behavior
          
-         System.out.println("Your pairs: " + human.pairs);
-         System.out.println("Robot's pairs: " + robot.pairs);
-      
-         System.out.println("\nEnter a card that you have and want to ask for.");
+         
+         System.out.println("\nEnter a card that you have and want to ask");
          String input = in.next();
          
          if (human.indexOf(input) <= -1)
             while (true){
-               System.out.println("You do not have that card. Enter another card");
+               System.out.println("You do not have that card enter another card");
                input = in.next();
                if (human.indexOf(input) > -1)
                   break;
             }
-         human.askHuman(input, robot, dMain);
-         human.checkPairHuman();
+         human.ask(input, robot, dMain);
+         human.checkPair();
          human.showHand();
       
       //Check if no remaining cards
          if (human.hand.size() < 1 ){
             if (human.pairs > robot.pairs)
-               System.out.println("Human has WON!");
+               System.out.println("Human Has WON!");
             else if (human.pairs < robot.pairs)
                System.out.println("Robot has WON");
             else
@@ -67,10 +67,25 @@ public class GoFish{
             break;
          }
       //Robot Behavior
-         int rand = (int)(Math.random() * robot.hand.size());
-         robot.askBot(robot.hand.get(rand).getRank(), human, dMain);
-         //robot.checkPairBot();
-         
+         String rAsk = "";
+         rand = (int)(Math.random() * robot.hand.size());
+         int range = 0;
+         for (int c = 0; c < robot.hand.size(); c ++){
+            if (robot.mem.indexOf(robot.hand.get(c).getRank()) > -1){
+               range++;
+                       
+            }
+            
+         }
+         if (range < 1){
+            robot.ask(robot.hand.get(rand).getRank(), human, dMain);
+         }
+         else {
+            rAsk = robot.hand.get((int)(Math.random() * range)).getRank();   
+            robot.ask(rAsk, human, dMain);
+         }
+         robot.checkPair();
+         robot.showHand();
        //Check if no remaining cards
          if (robot.hand.size() < 1){
             if (human.pairs > robot.pairs)
@@ -81,6 +96,11 @@ public class GoFish{
                System.out.println("It's a tie!");
             break;
          }
+      
       }
    }
+   
+   
+   
+  
 }
