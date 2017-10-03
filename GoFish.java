@@ -1,4 +1,5 @@
-//Handsomely coded by Tim Lee
+//Handsomely coded by Tim Lee and Anna Herms
+//Passive agressively tweaked by Zach Richey
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,22 +33,23 @@ public class GoFish{
       human.checkPairInitial();
       robot.checkPairInitial();
       human.showHand();//prints your cards
-      System.out.println("--------");
-      robot.showHand();//prints robots cards
+
       Scanner in = new Scanner(System.in);
       int rand = 0;
       while (true){
       
-      
+      System.out.println("Your pairs: " + human.pairs);
+      System.out.println("Robot's pairs: " + robot.pairs);
+
       //Human Behavior
          
          
-         System.out.println("\nEnter a card that you have and want to ask");
+         System.out.println("\nEnter a card that you have and want to ask for.");
          String input = in.next();
          
          if (human.indexOf(input) <= -1)
             while (true){
-               System.out.println("You do not have that card enter another card");
+               System.out.println("You do not have that card. Enter another card");
                input = in.next();
                if (human.indexOf(input) > -1)
                   break;
@@ -61,7 +63,7 @@ public class GoFish{
             if (human.pairs > robot.pairs)
                System.out.println("Human Has WON!");
             else if (human.pairs < robot.pairs)
-               System.out.println("Robot has WON");
+               System.out.println("Robot has WON!");
             else
                System.out.println("It's a tie!");
             break;
@@ -91,16 +93,11 @@ public class GoFish{
             if (human.pairs > robot.pairs)
                System.out.println("Human Has WON!");
             else if (human.pairs < robot.pairs)
-               System.out.println("Robot has WON");
+               System.out.println("Robot has WON!");
             else
                System.out.println("It's a tie!");
             break;
          }
-      
       }
    }
-   
-   
-   
-  
 }
