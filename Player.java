@@ -38,7 +38,7 @@ public class Player
                hand.remove(j);
                hand.remove(i);
                i = 0;
-               j = i+1;
+               j = 1;
             }
          }
       }
@@ -54,9 +54,9 @@ public class Player
             if (mem.size() > 0 && mem.indexOf(hand.get(i)) != -1 )
                mem.remove(mem.indexOf(hand.get(i).getRank()));
             if (name.equals("human"))
-               System.out.println("Good job! You got a pair of " + (hand.get(i)).getRank() + "s. You now have " + pairs + " pair(s).");
+               System.out.println("Good job! You got a pair of " + (hand.get(i)).getRank() + "s.");
             else
-               System.out.println("Robot got a pair of " + (hand.get(i)).getRank() + "s. Robot now has " + pairs + " pair(s).");
+               System.out.println("Robot got a pair of " + (hand.get(i)).getRank() + "s.");
             hand.remove(hand.size() - 1);
             hand.remove(i);
          }
@@ -65,16 +65,13 @@ public class Player
    //Prints the player's current hand
    public void showHand()
    {
+      System.out.println("Your hand:");
       for(Card c: hand)
          System.out.println(c);
+      System.out.println();
+
    }
-   
-   //Adds a card to hand
-   //public void add(Card c)
-   //{
-   //   hand.add(c);
-   //}
-   
+
    //Adds a card of the given rank from hand to p.hand. Removes the card from hand
    public void giveCard(String rank, Player p)
    {
@@ -88,9 +85,9 @@ public class Player
       if(p.indexOf(rank) > -1)
       {
          if (name.equals("human"))
-            System.out.println("\nYou asked for a " + rank + ". You took robot's " + rank);
+            System.out.println("\nYou asked for a " + rank + ". You took robot's " + rank + ".");
          else
-            System.out.println("\nRobot asked for a " + rank + ". Robot took your " + rank);
+            System.out.println("\nRobot asked for a " + rank + ". Robot took your " + rank + ".");
          this.hand.add(p.hand.get(p.indexOf(rank)));
          p.hand.remove(p.indexOf(rank));
       }
@@ -99,7 +96,7 @@ public class Player
          mem.add(rank);
          this.hand.add(d.deal());
          if (name.equals("human"))
-            System.out.println("\nRobot did not have a " + rank + ". You Drew a " + this.hand.get(hand.size()-1) + ".");        
+            System.out.println("\nRobot did not have a " + rank + ". You drew a " + this.hand.get(hand.size()-1) + ".");        
          else
             System.out.println("\nRobot asked for " + rank + ". You did not have a " + rank + ". Robot drew a card.");
 
